@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  angular-dev:
+    image: angular-dev
+    container_name: angular-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4200:4200"
+    command: ng serve --host 0.0.0.0 --poll 2000
+
+  angular-prod:
+    image: angular-prod
+    container_name: angular-prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
